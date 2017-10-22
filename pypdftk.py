@@ -83,6 +83,7 @@ def fill_form(pdf_path, datas={}, out_file=None, flatten=True):
             os.close(handle)
     return out_file
 
+
 def dump_data_fields(pdf_path):
     '''
         Return list of dicts of all fields in a PDF.
@@ -93,6 +94,7 @@ def dump_data_fields(pdf_path):
     fields = [list(group) for k, group in itertools.groupby(field_data, lambda x: len(x) == 1) if not k]
 
     return map(dict, fields)
+
 
 def concat(files, out_file=None):
     '''
@@ -150,8 +152,8 @@ def gen_xfdf(datas={}):
         </fields>
     </xfdf>""" % "\n".join(fields)
     handle, out_file = tempfile.mkstemp()
-    f = open(out_file, 'w')
-    f.write(str(tpl.encode('UTF-8')))
+    f = open(out_file, 'w', encoding="UTF-8")
+    f.write(tpl)
     f.close()
     return out_file
 
