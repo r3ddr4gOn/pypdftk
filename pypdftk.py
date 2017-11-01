@@ -74,6 +74,9 @@ def fill_form(pdf_path, datas={}, out_file=None, flatten=True):
         cmd += ' flatten'
     try:
         run_command(cmd, True)
+        os.remove(tmp_fdf)
+    except OSError:
+        pass
     except:
         if cleanOnFail:
             os.remove(tmp_fdf)
